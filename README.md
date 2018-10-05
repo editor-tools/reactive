@@ -1,4 +1,28 @@
-﻿Reactive Extensions
+﻿Reactive Extensions built for GitHub for Visual Studio
+======================================================
+
+In https://github.com/github/VisualStudio we need to custom sign our System.Reactive packages (see https://github.com/github/VisualStudio/issues/1775).
+
+We're currently using version 4.0.0.
+
+To build these packages for GHfVS, follow these steps:
+
+- Install Visual Studio 2017 (future versions might or might not work, who knows?) 
+- Make sure all the UWP packages are installed from the VS installer (not 100% sure quite which are needed, please clarify if known!) [1]
+- Open a powershell console
+- Make sure `msbuild` 15 is on your path
+- Run:
+
+```
+> $Env:BuildConfiguration="Release"
+> .\Rx.NET\Source\build-new.ps1
+```
+
+The packages should appear in `Rx.NET\Source\artifacts`.
+
+> [1]: The reason I didn't simply remove the UWP target is because I want to make the custom changes minimal to make upgrading to another version easy.
+
+Reactive Extensions
 ======================
 [![Coverage Status](https://coveralls.io/repos/github/dotnet/reactive/badge.svg?branch=master)](https://coveralls.io/github/dotnet/reactive?branch=master)
 
